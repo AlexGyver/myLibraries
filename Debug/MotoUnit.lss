@@ -1,0 +1,1380 @@
+
+MotoUnit.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000005e6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          0000000e  00800060  00800060  0000065a  2**0
+                  ALLOC
+  2 .stab         00001434  00000000  00000000  0000065c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000e30  00000000  00000000  00001a90  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_aranges 000000c0  00000000  00000000  000028c0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_pubnames 00000101  00000000  00000000  00002980  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000012a4  00000000  00000000  00002a81  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000a68  00000000  00000000  00003d25  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000009c9  00000000  00000000  0000478d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000c0  00000000  00000000  00005158  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000261  00000000  00000000  00005218  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000004ee  00000000  00000000  00005479  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000050  00000000  00000000  00005967  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_clear_bss>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	01 c0       	rjmp	.+2      	; 0x3c <.do_clear_bss_start>
+
+0000003a <.do_clear_bss_loop>:
+  3a:	1d 92       	st	X+, r1
+
+0000003c <.do_clear_bss_start>:
+  3c:	ae 36       	cpi	r26, 0x6E	; 110
+  3e:	b1 07       	cpc	r27, r17
+  40:	e1 f7       	brne	.-8      	; 0x3a <.do_clear_bss_loop>
+
+00000042 <__do_copy_data>:
+  42:	10 e0       	ldi	r17, 0x00	; 0
+  44:	a0 e6       	ldi	r26, 0x60	; 96
+  46:	b0 e0       	ldi	r27, 0x00	; 0
+  48:	e6 ee       	ldi	r30, 0xE6	; 230
+  4a:	f5 e0       	ldi	r31, 0x05	; 5
+  4c:	02 c0       	rjmp	.+4      	; 0x52 <.do_copy_data_start>
+
+0000004e <.do_copy_data_loop>:
+  4e:	05 90       	lpm	r0, Z+
+  50:	0d 92       	st	X+, r0
+
+00000052 <.do_copy_data_start>:
+  52:	a0 36       	cpi	r26, 0x60	; 96
+  54:	b1 07       	cpc	r27, r17
+  56:	d9 f7       	brne	.-10     	; 0x4e <.do_copy_data_loop>
+  58:	96 d2       	rcall	.+1324   	; 0x586 <main>
+  5a:	c3 c2       	rjmp	.+1414   	; 0x5e2 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <mpu6050_writeBytes>:
+}
+
+/*
+ * write bytes to chip register
+ */
+void mpu6050_writeBytes(uint8_t regAddr, uint8_t length, uint8_t* data) {
+  5e:	ef 92       	push	r14
+  60:	ff 92       	push	r15
+  62:	0f 93       	push	r16
+  64:	1f 93       	push	r17
+  66:	cf 93       	push	r28
+  68:	df 93       	push	r29
+  6a:	f8 2e       	mov	r15, r24
+  6c:	16 2f       	mov	r17, r22
+  6e:	04 2f       	mov	r16, r20
+  70:	e5 2e       	mov	r14, r21
+	if(length > 0) {
+  72:	66 23       	and	r22, r22
+  74:	39 f4       	brne	.+14     	; 0x84 <mpu6050_writeBytes+0x26>
+		for (uint8_t i = 0; i < length; i++) {
+			i2c_write((uint8_t) data[i]);
+		}
+		i2c_stop();
+	}
+}
+  76:	df 91       	pop	r29
+  78:	cf 91       	pop	r28
+  7a:	1f 91       	pop	r17
+  7c:	0f 91       	pop	r16
+  7e:	ff 90       	pop	r15
+  80:	ef 90       	pop	r14
+  82:	08 95       	ret
+ * write bytes to chip register
+ */
+void mpu6050_writeBytes(uint8_t regAddr, uint8_t length, uint8_t* data) {
+	if(length > 0) {
+		//write data
+		i2c_start(MPU6050_ADDR | I2C_WRITE);
+  84:	80 ed       	ldi	r24, 0xD0	; 208
+  86:	ab d1       	rcall	.+854    	; 0x3de <i2c_start>
+		i2c_write(regAddr); //reg
+  88:	8f 2d       	mov	r24, r15
+  8a:	fe d1       	rcall	.+1020   	; 0x488 <i2c_write>
+  8c:	80 2f       	mov	r24, r16
+  8e:	9e 2d       	mov	r25, r14
+  90:	9c 01       	movw	r18, r24
+  92:	e9 01       	movw	r28, r18
+		for (uint8_t i = 0; i < length; i++) {
+			i2c_write((uint8_t) data[i]);
+  94:	89 91       	ld	r24, Y+
+  96:	f8 d1       	rcall	.+1008   	; 0x488 <i2c_write>
+void mpu6050_writeBytes(uint8_t regAddr, uint8_t length, uint8_t* data) {
+	if(length > 0) {
+		//write data
+		i2c_start(MPU6050_ADDR | I2C_WRITE);
+		i2c_write(regAddr); //reg
+		for (uint8_t i = 0; i < length; i++) {
+  98:	9e 01       	movw	r18, r28
+  9a:	20 1b       	sub	r18, r16
+  9c:	21 17       	cp	r18, r17
+  9e:	d0 f3       	brcs	.-12     	; 0x94 <mpu6050_writeBytes+0x36>
+			i2c_write((uint8_t) data[i]);
+		}
+		i2c_stop();
+  a0:	e5 d1       	rcall	.+970    	; 0x46c <i2c_stop>
+	}
+}
+  a2:	df 91       	pop	r29
+  a4:	cf 91       	pop	r28
+  a6:	1f 91       	pop	r17
+  a8:	0f 91       	pop	r16
+  aa:	ff 90       	pop	r15
+  ac:	ef 90       	pop	r14
+  ae:	08 95       	ret
+
+000000b0 <mpu6050_writeByte>:
+
+/*
+ * write 1 byte to chip register
+ */
+void mpu6050_writeByte(uint8_t regAddr, uint8_t data) {
+  b0:	df 93       	push	r29
+  b2:	cf 93       	push	r28
+  b4:	0f 92       	push	r0
+  b6:	cd b7       	in	r28, 0x3d	; 61
+  b8:	de b7       	in	r29, 0x3e	; 62
+  ba:	69 83       	std	Y+1, r22	; 0x01
+    return mpu6050_writeBytes(regAddr, 1, &data);
+  bc:	61 e0       	ldi	r22, 0x01	; 1
+  be:	ae 01       	movw	r20, r28
+  c0:	4f 5f       	subi	r20, 0xFF	; 255
+  c2:	5f 4f       	sbci	r21, 0xFF	; 255
+  c4:	cc df       	rcall	.-104    	; 0x5e <mpu6050_writeBytes>
+}
+  c6:	0f 90       	pop	r0
+  c8:	cf 91       	pop	r28
+  ca:	df 91       	pop	r29
+  cc:	08 95       	ret
+
+000000ce <mpu6050_readBytes>:
+volatile uint8_t buffer[14];
+
+/*
+ * read bytes from chip register
+ */
+int8_t mpu6050_readBytes(uint8_t regAddr, uint8_t length, uint8_t *data) {
+  ce:	cf 92       	push	r12
+  d0:	df 92       	push	r13
+  d2:	ef 92       	push	r14
+  d4:	ff 92       	push	r15
+  d6:	0f 93       	push	r16
+  d8:	1f 93       	push	r17
+  da:	cf 93       	push	r28
+  dc:	df 93       	push	r29
+  de:	18 2f       	mov	r17, r24
+  e0:	d6 2e       	mov	r13, r22
+  e2:	04 2f       	mov	r16, r20
+  e4:	c5 2e       	mov	r12, r21
+	uint8_t i = 0;
+	int8_t count = 0;
+	if(length > 0) {
+  e6:	66 23       	and	r22, r22
+  e8:	59 f4       	brne	.+22     	; 0x100 <mpu6050_readBytes+0x32>
+  ea:	10 e0       	ldi	r17, 0x00	; 0
+				data[i] = i2c_readAck();
+		}
+		i2c_stop();
+	}
+	return count;
+}
+  ec:	81 2f       	mov	r24, r17
+  ee:	df 91       	pop	r29
+  f0:	cf 91       	pop	r28
+  f2:	1f 91       	pop	r17
+  f4:	0f 91       	pop	r16
+  f6:	ff 90       	pop	r15
+  f8:	ef 90       	pop	r14
+  fa:	df 90       	pop	r13
+  fc:	cf 90       	pop	r12
+  fe:	08 95       	ret
+int8_t mpu6050_readBytes(uint8_t regAddr, uint8_t length, uint8_t *data) {
+	uint8_t i = 0;
+	int8_t count = 0;
+	if(length > 0) {
+		//request register
+		i2c_start(MPU6050_ADDR | I2C_WRITE);
+ 100:	80 ed       	ldi	r24, 0xD0	; 208
+ 102:	6d d1       	rcall	.+730    	; 0x3de <i2c_start>
+		i2c_write(regAddr);
+ 104:	81 2f       	mov	r24, r17
+ 106:	c0 d1       	rcall	.+896    	; 0x488 <i2c_write>
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 108:	8a e1       	ldi	r24, 0x1A	; 26
+ 10a:	8a 95       	dec	r24
+ 10c:	f1 f7       	brne	.-4      	; 0x10a <mpu6050_readBytes+0x3c>
+		_delay_us(10);
+		//read data
+		i2c_start(MPU6050_ADDR | I2C_READ);
+ 10e:	81 ed       	ldi	r24, 0xD1	; 209
+ 110:	66 d1       	rcall	.+716    	; 0x3de <i2c_start>
+ 112:	ed 2c       	mov	r14, r13
+ 114:	ff 24       	eor	r15, r15
+ 116:	08 94       	sec
+ 118:	e1 08       	sbc	r14, r1
+ 11a:	f1 08       	sbc	r15, r1
+ 11c:	80 2f       	mov	r24, r16
+ 11e:	9c 2d       	mov	r25, r12
+ 120:	9c 01       	movw	r18, r24
+ 122:	89 01       	movw	r16, r18
+ 124:	c0 e0       	ldi	r28, 0x00	; 0
+ 126:	d0 e0       	ldi	r29, 0x00	; 0
+ 128:	08 c0       	rjmp	.+16     	; 0x13a <mpu6050_readBytes+0x6c>
+		for(i=0; i<length; i++) {
+			count++;
+			if(i==length-1)
+				data[i] = i2c_readNak();
+			else
+				data[i] = i2c_readAck();
+ 12a:	d2 d1       	rcall	.+932    	; 0x4d0 <i2c_readAck>
+ 12c:	f8 01       	movw	r30, r16
+ 12e:	80 83       	st	Z, r24
+ 130:	21 96       	adiw	r28, 0x01	; 1
+ 132:	0f 5f       	subi	r16, 0xFF	; 255
+ 134:	1f 4f       	sbci	r17, 0xFF	; 255
+		i2c_start(MPU6050_ADDR | I2C_WRITE);
+		i2c_write(regAddr);
+		_delay_us(10);
+		//read data
+		i2c_start(MPU6050_ADDR | I2C_READ);
+		for(i=0; i<length; i++) {
+ 136:	cd 15       	cp	r28, r13
+ 138:	58 f4       	brcc	.+22     	; 0x150 <mpu6050_readBytes+0x82>
+			count++;
+			if(i==length-1)
+ 13a:	ce 15       	cp	r28, r14
+ 13c:	df 05       	cpc	r29, r15
+ 13e:	a9 f7       	brne	.-22     	; 0x12a <mpu6050_readBytes+0x5c>
+				data[i] = i2c_readNak();
+ 140:	e4 d1       	rcall	.+968    	; 0x50a <i2c_readNak>
+ 142:	f8 01       	movw	r30, r16
+ 144:	80 83       	st	Z, r24
+			else
+				data[i] = i2c_readAck();
+ 146:	21 96       	adiw	r28, 0x01	; 1
+ 148:	0f 5f       	subi	r16, 0xFF	; 255
+ 14a:	1f 4f       	sbci	r17, 0xFF	; 255
+		i2c_start(MPU6050_ADDR | I2C_WRITE);
+		i2c_write(regAddr);
+		_delay_us(10);
+		//read data
+		i2c_start(MPU6050_ADDR | I2C_READ);
+		for(i=0; i<length; i++) {
+ 14c:	cd 15       	cp	r28, r13
+ 14e:	a8 f3       	brcs	.-22     	; 0x13a <mpu6050_readBytes+0x6c>
+ 150:	1d 2d       	mov	r17, r13
+			if(i==length-1)
+				data[i] = i2c_readNak();
+			else
+				data[i] = i2c_readAck();
+		}
+		i2c_stop();
+ 152:	8c d1       	rcall	.+792    	; 0x46c <i2c_stop>
+ 154:	cb cf       	rjmp	.-106    	; 0xec <mpu6050_readBytes+0x1e>
+
+00000156 <mpu6050_readByte>:
+}
+
+/*
+ * read 1 byte from chip register
+ */
+int8_t mpu6050_readByte(uint8_t regAddr, uint8_t *data) {
+ 156:	ab 01       	movw	r20, r22
+    return mpu6050_readBytes(regAddr, 1, data);
+ 158:	61 e0       	ldi	r22, 0x01	; 1
+ 15a:	b9 cf       	rjmp	.-142    	; 0xce <mpu6050_readBytes>
+
+0000015c <mpu6050_writeBit>:
+}
+
+/*
+ * write one bit to chip register
+ */
+void mpu6050_writeBit(uint8_t regAddr, uint8_t bitNum, uint8_t data) {
+ 15c:	ff 92       	push	r15
+ 15e:	0f 93       	push	r16
+ 160:	1f 93       	push	r17
+ 162:	df 93       	push	r29
+ 164:	cf 93       	push	r28
+ 166:	0f 92       	push	r0
+ 168:	cd b7       	in	r28, 0x3d	; 61
+ 16a:	de b7       	in	r29, 0x3e	; 62
+ 16c:	f8 2e       	mov	r15, r24
+ 16e:	06 2f       	mov	r16, r22
+ 170:	14 2f       	mov	r17, r20
+    uint8_t b;
+    mpu6050_readByte(regAddr, &b);
+ 172:	be 01       	movw	r22, r28
+ 174:	6f 5f       	subi	r22, 0xFF	; 255
+ 176:	7f 4f       	sbci	r23, 0xFF	; 255
+ 178:	ee df       	rcall	.-36     	; 0x156 <mpu6050_readByte>
+    b = (data != 0) ? (b | (1 << bitNum)) : (b & ~(1 << bitNum));
+ 17a:	11 23       	and	r17, r17
+ 17c:	a9 f4       	brne	.+42     	; 0x1a8 <mpu6050_writeBit+0x4c>
+ 17e:	81 e0       	ldi	r24, 0x01	; 1
+ 180:	90 e0       	ldi	r25, 0x00	; 0
+ 182:	02 c0       	rjmp	.+4      	; 0x188 <mpu6050_writeBit+0x2c>
+ 184:	88 0f       	add	r24, r24
+ 186:	99 1f       	adc	r25, r25
+ 188:	0a 95       	dec	r16
+ 18a:	e2 f7       	brpl	.-8      	; 0x184 <mpu6050_writeBit+0x28>
+ 18c:	68 2f       	mov	r22, r24
+ 18e:	60 95       	com	r22
+ 190:	89 81       	ldd	r24, Y+1	; 0x01
+ 192:	68 23       	and	r22, r24
+ 194:	69 83       	std	Y+1, r22	; 0x01
+    mpu6050_writeByte(regAddr, b);
+ 196:	8f 2d       	mov	r24, r15
+ 198:	8b df       	rcall	.-234    	; 0xb0 <mpu6050_writeByte>
+}
+ 19a:	0f 90       	pop	r0
+ 19c:	cf 91       	pop	r28
+ 19e:	df 91       	pop	r29
+ 1a0:	1f 91       	pop	r17
+ 1a2:	0f 91       	pop	r16
+ 1a4:	ff 90       	pop	r15
+ 1a6:	08 95       	ret
+ * write one bit to chip register
+ */
+void mpu6050_writeBit(uint8_t regAddr, uint8_t bitNum, uint8_t data) {
+    uint8_t b;
+    mpu6050_readByte(regAddr, &b);
+    b = (data != 0) ? (b | (1 << bitNum)) : (b & ~(1 << bitNum));
+ 1a8:	81 e0       	ldi	r24, 0x01	; 1
+ 1aa:	90 e0       	ldi	r25, 0x00	; 0
+ 1ac:	02 c0       	rjmp	.+4      	; 0x1b2 <mpu6050_writeBit+0x56>
+ 1ae:	88 0f       	add	r24, r24
+ 1b0:	99 1f       	adc	r25, r25
+ 1b2:	0a 95       	dec	r16
+ 1b4:	e2 f7       	brpl	.-8      	; 0x1ae <mpu6050_writeBit+0x52>
+ 1b6:	69 81       	ldd	r22, Y+1	; 0x01
+ 1b8:	68 2b       	or	r22, r24
+ 1ba:	ec cf       	rjmp	.-40     	; 0x194 <mpu6050_writeBit+0x38>
+
+000001bc <mpu6050_setSleepDisabled>:
+
+/*
+ * set sleep disabled
+ */
+void mpu6050_setSleepDisabled() {
+	mpu6050_writeBit(MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, 0);
+ 1bc:	8b e6       	ldi	r24, 0x6B	; 107
+ 1be:	66 e0       	ldi	r22, 0x06	; 6
+ 1c0:	40 e0       	ldi	r20, 0x00	; 0
+ 1c2:	cc cf       	rjmp	.-104    	; 0x15c <mpu6050_writeBit>
+
+000001c4 <mpu6050_writeBits>:
+}
+
+/*
+ * write bit/bits to chip register
+ */
+void mpu6050_writeBits(uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t data) {
+ 1c4:	ef 92       	push	r14
+ 1c6:	ff 92       	push	r15
+ 1c8:	0f 93       	push	r16
+ 1ca:	1f 93       	push	r17
+ 1cc:	df 93       	push	r29
+ 1ce:	cf 93       	push	r28
+ 1d0:	0f 92       	push	r0
+ 1d2:	cd b7       	in	r28, 0x3d	; 61
+ 1d4:	de b7       	in	r29, 0x3e	; 62
+ 1d6:	e8 2e       	mov	r14, r24
+ 1d8:	06 2f       	mov	r16, r22
+ 1da:	14 2f       	mov	r17, r20
+ 1dc:	f2 2e       	mov	r15, r18
+    //    xxx   args: bitStart=4, length=3
+    // 00011100 mask byte
+    // 10101111 original value (sample)
+    // 10100011 original & ~mask
+    // 10101011 masked | value
+	if(length > 0) {
+ 1de:	44 23       	and	r20, r20
+ 1e0:	41 f4       	brne	.+16     	; 0x1f2 <mpu6050_writeBits+0x2e>
+			b &= ~(mask); // zero all important bits in existing byte
+			b |= data; // combine data with existing byte
+			mpu6050_writeByte(regAddr, b);
+		}
+	}
+}
+ 1e2:	0f 90       	pop	r0
+ 1e4:	cf 91       	pop	r28
+ 1e6:	df 91       	pop	r29
+ 1e8:	1f 91       	pop	r17
+ 1ea:	0f 91       	pop	r16
+ 1ec:	ff 90       	pop	r15
+ 1ee:	ef 90       	pop	r14
+ 1f0:	08 95       	ret
+    // 00011100 mask byte
+    // 10101111 original value (sample)
+    // 10100011 original & ~mask
+    // 10101011 masked | value
+	if(length > 0) {
+		uint8_t b = 0;
+ 1f2:	19 82       	std	Y+1, r1	; 0x01
+		if (mpu6050_readByte(regAddr, &b) != 0) { //get current data
+ 1f4:	be 01       	movw	r22, r28
+ 1f6:	6f 5f       	subi	r22, 0xFF	; 255
+ 1f8:	7f 4f       	sbci	r23, 0xFF	; 255
+ 1fa:	ad df       	rcall	.-166    	; 0x156 <mpu6050_readByte>
+ 1fc:	88 23       	and	r24, r24
+ 1fe:	89 f3       	breq	.-30     	; 0x1e2 <mpu6050_writeBits+0x1e>
+			uint8_t mask = ((1 << length) - 1) << (bitStart - length + 1);
+ 200:	21 2f       	mov	r18, r17
+ 202:	30 e0       	ldi	r19, 0x00	; 0
+ 204:	40 2f       	mov	r20, r16
+ 206:	50 e0       	ldi	r21, 0x00	; 0
+ 208:	4f 5f       	subi	r20, 0xFF	; 255
+ 20a:	5f 4f       	sbci	r21, 0xFF	; 255
+ 20c:	42 1b       	sub	r20, r18
+ 20e:	53 0b       	sbc	r21, r19
+ 210:	81 e0       	ldi	r24, 0x01	; 1
+ 212:	90 e0       	ldi	r25, 0x00	; 0
+ 214:	02 c0       	rjmp	.+4      	; 0x21a <mpu6050_writeBits+0x56>
+ 216:	88 0f       	add	r24, r24
+ 218:	99 1f       	adc	r25, r25
+ 21a:	1a 95       	dec	r17
+ 21c:	e2 f7       	brpl	.-8      	; 0x216 <mpu6050_writeBits+0x52>
+ 21e:	01 97       	sbiw	r24, 0x01	; 1
+ 220:	04 2e       	mov	r0, r20
+ 222:	02 c0       	rjmp	.+4      	; 0x228 <mpu6050_writeBits+0x64>
+ 224:	88 0f       	add	r24, r24
+ 226:	99 1f       	adc	r25, r25
+ 228:	0a 94       	dec	r0
+ 22a:	e2 f7       	brpl	.-8      	; 0x224 <mpu6050_writeBits+0x60>
+			data <<= (bitStart - length + 1); // shift data into correct position
+ 22c:	2f 2d       	mov	r18, r15
+ 22e:	30 e0       	ldi	r19, 0x00	; 0
+ 230:	02 c0       	rjmp	.+4      	; 0x236 <mpu6050_writeBits+0x72>
+ 232:	22 0f       	add	r18, r18
+ 234:	33 1f       	adc	r19, r19
+ 236:	4a 95       	dec	r20
+ 238:	e2 f7       	brpl	.-8      	; 0x232 <mpu6050_writeBits+0x6e>
+			data &= mask; // zero all non-important bits in data
+			b &= ~(mask); // zero all important bits in existing byte
+			b |= data; // combine data with existing byte
+ 23a:	68 2f       	mov	r22, r24
+ 23c:	60 95       	com	r22
+ 23e:	49 81       	ldd	r20, Y+1	; 0x01
+ 240:	64 23       	and	r22, r20
+ 242:	82 23       	and	r24, r18
+ 244:	68 2b       	or	r22, r24
+ 246:	69 83       	std	Y+1, r22	; 0x01
+			mpu6050_writeByte(regAddr, b);
+ 248:	8e 2d       	mov	r24, r14
+ 24a:	32 df       	rcall	.-412    	; 0xb0 <mpu6050_writeByte>
+		}
+	}
+}
+ 24c:	0f 90       	pop	r0
+ 24e:	cf 91       	pop	r28
+ 250:	df 91       	pop	r29
+ 252:	1f 91       	pop	r17
+ 254:	0f 91       	pop	r16
+ 256:	ff 90       	pop	r15
+ 258:	ef 90       	pop	r14
+ 25a:	08 95       	ret
+
+0000025c <mpu6050_DMPinit>:
+
+	#if MPU6050_GETATTITUDE == 1
+	MPU6050_TIMER0INIT
+	#endif
+}
+void mpu6050_DMPinit() {
+ 25c:	0f 93       	push	r16
+ 25e:	1f 93       	push	r17
+
+	//cycle=0 and sleep=0
+	//mpu6050_writeBits(MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, 2, 0b00);
+
+	//STBY_XA,YA,ZA = 0
+	mpu6050_writeBits(MPU6050_RA_PWR_MGMT_2, MPU6050_PWR2_STBY_XA_BIT, 3, 0b000);
+ 260:	8c e6       	ldi	r24, 0x6C	; 108
+ 262:	65 e0       	ldi	r22, 0x05	; 5
+ 264:	43 e0       	ldi	r20, 0x03	; 3
+ 266:	20 e0       	ldi	r18, 0x00	; 0
+ 268:	ad df       	rcall	.-166    	; 0x1c4 <mpu6050_writeBits>
+
+
+	//set HPF to reset settings
+	mpu6050_writeBits(MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_ACCEL_HPF_BIT, MPU6050_ACONFIG_ACCEL_HPF_LENGTH, 0b000);
+ 26a:	8c e1       	ldi	r24, 0x1C	; 28
+ 26c:	62 e0       	ldi	r22, 0x02	; 2
+ 26e:	43 e0       	ldi	r20, 0x03	; 3
+ 270:	20 e0       	ldi	r18, 0x00	; 0
+ 272:	a8 df       	rcall	.-176    	; 0x1c4 <mpu6050_writeBits>
+
+	//LPF to 256 Bandwidth
+	mpu6050_writeBits(MPU6050_RA_CONFIG, MPU6050_CFG_DLPF_CFG_BIT, MPU6050_CFG_DLPF_CFG_LENGTH, MPU6050_DLPF_BW_256);
+ 274:	8a e1       	ldi	r24, 0x1A	; 26
+ 276:	62 e0       	ldi	r22, 0x02	; 2
+ 278:	43 e0       	ldi	r20, 0x03	; 3
+ 27a:	20 e0       	ldi	r18, 0x00	; 0
+ 27c:	a3 df       	rcall	.-186    	; 0x1c4 <mpu6050_writeBits>
+
+	//MOTION INT ENABLE
+	mpu6050_writeByte(MPU6050_RA_INT_ENABLE,0x40);
+ 27e:	88 e3       	ldi	r24, 0x38	; 56
+ 280:	60 e4       	ldi	r22, 0x40	; 64
+ 282:	16 df       	rcall	.-468    	; 0xb0 <mpu6050_writeByte>
+
+	//MOTION DURATION
+	mpu6050_writeByte(MPU6050_RA_MOT_DUR,1);
+ 284:	80 e2       	ldi	r24, 0x20	; 32
+ 286:	61 e0       	ldi	r22, 0x01	; 1
+ 288:	13 df       	rcall	.-474    	; 0xb0 <mpu6050_writeByte>
+
+	//MOTION THR
+	mpu6050_writeByte(MPU6050_RA_MOT_THR,10);
+ 28a:	8f e1       	ldi	r24, 0x1F	; 31
+ 28c:	6a e0       	ldi	r22, 0x0A	; 10
+ 28e:	10 df       	rcall	.-480    	; 0xb0 <mpu6050_writeByte>
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 290:	00 ed       	ldi	r16, 0xD0	; 208
+ 292:	17 e0       	ldi	r17, 0x07	; 7
+ 294:	c8 01       	movw	r24, r16
+ 296:	01 97       	sbiw	r24, 0x01	; 1
+ 298:	f1 f7       	brne	.-4      	; 0x296 <mpu6050_DMPinit+0x3a>
+
+	_delay_ms(1);
+
+	//set HPF to HOLD settings
+	mpu6050_writeBits(MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_ACCEL_HPF_BIT, MPU6050_ACONFIG_ACCEL_HPF_LENGTH, 0b111);
+ 29a:	8c e1       	ldi	r24, 0x1C	; 28
+ 29c:	62 e0       	ldi	r22, 0x02	; 2
+ 29e:	43 e0       	ldi	r20, 0x03	; 3
+ 2a0:	27 e0       	ldi	r18, 0x07	; 7
+ 2a2:	90 df       	rcall	.-224    	; 0x1c4 <mpu6050_writeBits>
+
+	//Set frequency of wakeup
+	mpu6050_writeBits(MPU6050_RA_PWR_MGMT_2, 7, 2, 0b11);//for 0b00 0b01 not working at all, and 0b10 not so sensitive
+ 2a4:	8c e6       	ldi	r24, 0x6C	; 108
+ 2a6:	67 e0       	ldi	r22, 0x07	; 7
+ 2a8:	42 e0       	ldi	r20, 0x02	; 2
+ 2aa:	23 e0       	ldi	r18, 0x03	; 3
+ 2ac:	8b df       	rcall	.-234    	; 0x1c4 <mpu6050_writeBits>
+
+	//Enable cycle mode (low power mode)
+	mpu6050_writeBits(MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_CYCLE_BIT, 1, 1);
+ 2ae:	8b e6       	ldi	r24, 0x6B	; 107
+ 2b0:	65 e0       	ldi	r22, 0x05	; 5
+ 2b2:	41 e0       	ldi	r20, 0x01	; 1
+ 2b4:	21 e0       	ldi	r18, 0x01	; 1
+ 2b6:	86 df       	rcall	.-244    	; 0x1c4 <mpu6050_writeBits>
+ 2b8:	c8 01       	movw	r24, r16
+ 2ba:	01 97       	sbiw	r24, 0x01	; 1
+ 2bc:	f1 f7       	brne	.-4      	; 0x2ba <mpu6050_DMPinit+0x5e>
+
+	_delay_ms(1);
+
+	mpu6050_writeBits(MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, 1, 0);
+ 2be:	8b e6       	ldi	r24, 0x6B	; 107
+ 2c0:	66 e0       	ldi	r22, 0x06	; 6
+ 2c2:	41 e0       	ldi	r20, 0x01	; 1
+ 2c4:	20 e0       	ldi	r18, 0x00	; 0
+ 2c6:	7e df       	rcall	.-260    	; 0x1c4 <mpu6050_writeBits>
+ 2c8:	c8 01       	movw	r24, r16
+ 2ca:	01 97       	sbiw	r24, 0x01	; 1
+ 2cc:	f1 f7       	brne	.-4      	; 0x2ca <mpu6050_DMPinit+0x6e>
+
+	//not neccesary to turn off temperature sensor
+	//mpu6050_writeBits(MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_TEMP_DIS_BIT, 1, 1);
+
+	//Gyro to standby
+	mpu6050_writeBits(MPU6050_RA_PWR_MGMT_2, 2, 3, 0b111);
+ 2ce:	8c e6       	ldi	r24, 0x6C	; 108
+ 2d0:	62 e0       	ldi	r22, 0x02	; 2
+ 2d2:	43 e0       	ldi	r20, 0x03	; 3
+ 2d4:	27 e0       	ldi	r18, 0x07	; 7
+ 2d6:	76 df       	rcall	.-276    	; 0x1c4 <mpu6050_writeBits>
+
+
+	//PIN INT0
+	mpu6050_writeBits(MPU6050_RA_INT_PIN_CFG, MPU6050_INTCFG_INT_LEVEL_BIT, 2, 0b10);
+ 2d8:	87 e3       	ldi	r24, 0x37	; 55
+ 2da:	67 e0       	ldi	r22, 0x07	; 7
+ 2dc:	42 e0       	ldi	r20, 0x02	; 2
+ 2de:	22 e0       	ldi	r18, 0x02	; 2
+ 2e0:	71 df       	rcall	.-286    	; 0x1c4 <mpu6050_writeBits>
+
+}
+ 2e2:	1f 91       	pop	r17
+ 2e4:	0f 91       	pop	r16
+ 2e6:	08 95       	ret
+
+000002e8 <mpu6050_init>:
+ * initialize the accel and gyro
+ */
+void mpu6050_init() {
+	#if MPU6050_I2CINIT == 1
+	//init i2c
+	i2c_init();
+ 2e8:	76 d0       	rcall	.+236    	; 0x3d6 <i2c_init>
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 2ea:	8a e1       	ldi	r24, 0x1A	; 26
+ 2ec:	8a 95       	dec	r24
+ 2ee:	f1 f7       	brne	.-4      	; 0x2ec <mpu6050_init+0x4>
+ 2f0:	28 ee       	ldi	r18, 0xE8	; 232
+ 2f2:	33 e0       	ldi	r19, 0x03	; 3
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 2f4:	48 ec       	ldi	r20, 0xC8	; 200
+ 2f6:	50 e0       	ldi	r21, 0x00	; 0
+ 2f8:	ca 01       	movw	r24, r20
+ 2fa:	01 97       	sbiw	r24, 0x01	; 1
+ 2fc:	f1 f7       	brne	.-4      	; 0x2fa <mpu6050_init+0x12>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 2fe:	21 50       	subi	r18, 0x01	; 1
+ 300:	30 40       	sbci	r19, 0x00	; 0
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 302:	d1 f7       	brne	.-12     	; 0x2f8 <mpu6050_init+0x10>
+
+	//allow mpu6050 chip clocks to start up
+	_delay_ms(100);
+
+	//set sleep disabled
+	mpu6050_setSleepDisabled();
+ 304:	5b df       	rcall	.-330    	; 0x1bc <mpu6050_setSleepDisabled>
+ 306:	80 e2       	ldi	r24, 0x20	; 32
+ 308:	9e e4       	ldi	r25, 0x4E	; 78
+ 30a:	01 97       	sbiw	r24, 0x01	; 1
+ 30c:	f1 f7       	brne	.-4      	; 0x30a <mpu6050_init+0x22>
+	_delay_ms(10);
+
+	//set clock source
+	//  it is highly recommended that the device be configured to use one of the gyroscopes (or an external clock source)
+	//  as the clock reference for improved stability
+	mpu6050_writeBits(MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_CLKSEL_BIT, MPU6050_PWR1_CLKSEL_LENGTH, MPU6050_CLOCK_INTERNAL);
+ 30e:	8b e6       	ldi	r24, 0x6B	; 107
+ 310:	62 e0       	ldi	r22, 0x02	; 2
+ 312:	43 e0       	ldi	r20, 0x03	; 3
+ 314:	20 e0       	ldi	r18, 0x00	; 0
+ 316:	56 df       	rcall	.-340    	; 0x1c4 <mpu6050_writeBits>
+	//set DLPF bandwidth to 256Hz
+	mpu6050_writeBits(MPU6050_RA_CONFIG, MPU6050_CFG_DLPF_CFG_BIT, MPU6050_CFG_DLPF_CFG_LENGTH, MPU6050_DLPF_BW_256);
+ 318:	8a e1       	ldi	r24, 0x1A	; 26
+ 31a:	62 e0       	ldi	r22, 0x02	; 2
+ 31c:	43 e0       	ldi	r20, 0x03	; 3
+ 31e:	20 e0       	ldi	r18, 0x00	; 0
+ 320:	51 df       	rcall	.-350    	; 0x1c4 <mpu6050_writeBits>
+    //set sampe rate
+	mpu6050_writeByte(MPU6050_RA_SMPLRT_DIV, 4); //1khz / (1 + 4) = 200Hz
+ 322:	89 e1       	ldi	r24, 0x19	; 25
+ 324:	64 e0       	ldi	r22, 0x04	; 4
+ 326:	c4 de       	rcall	.-632    	; 0xb0 <mpu6050_writeByte>
+	//set gyro range
+	//mpu6050_writeBits(MPU6050_RA_GYRO_CONFIG, MPU6050_GCONFIG_FS_SEL_BIT, MPU6050_GCONFIG_FS_SEL_LENGTH, MPU6050_GYRO_FS);
+	//set accel range
+	mpu6050_writeBits(MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_AFS_SEL_BIT, MPU6050_ACONFIG_AFS_SEL_LENGTH, MPU6050_ACCEL_FS);
+ 328:	8c e1       	ldi	r24, 0x1C	; 28
+ 32a:	64 e0       	ldi	r22, 0x04	; 4
+ 32c:	42 e0       	ldi	r20, 0x02	; 2
+ 32e:	20 e0       	ldi	r18, 0x00	; 0
+ 330:	49 cf       	rjmp	.-366    	; 0x1c4 <mpu6050_writeBits>
+
+00000332 <mpu6050_readBits>:
+}
+
+/*
+ * read bits from chip register
+ */
+int8_t mpu6050_readBits(uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t *data) {
+ 332:	ef 92       	push	r14
+ 334:	ff 92       	push	r15
+ 336:	0f 93       	push	r16
+ 338:	1f 93       	push	r17
+ 33a:	df 93       	push	r29
+ 33c:	cf 93       	push	r28
+ 33e:	0f 92       	push	r0
+ 340:	cd b7       	in	r28, 0x3d	; 61
+ 342:	de b7       	in	r29, 0x3e	; 62
+ 344:	06 2f       	mov	r16, r22
+ 346:	14 2f       	mov	r17, r20
+ 348:	79 01       	movw	r14, r18
+    // 76543210 bit numbers
+    //    xxx   args: bitStart=4, length=3
+    //    010   masked
+    //   -> 010 shifted
+    int8_t count = 0;
+    if(length > 0) {
+ 34a:	44 23       	and	r20, r20
+ 34c:	51 f4       	brne	.+20     	; 0x362 <mpu6050_readBits+0x30>
+ 34e:	60 e0       	ldi	r22, 0x00	; 0
+			b >>= (bitStart - length + 1);
+			*data = b;
+		}
+    }
+    return count;
+}
+ 350:	86 2f       	mov	r24, r22
+ 352:	0f 90       	pop	r0
+ 354:	cf 91       	pop	r28
+ 356:	df 91       	pop	r29
+ 358:	1f 91       	pop	r17
+ 35a:	0f 91       	pop	r16
+ 35c:	ff 90       	pop	r15
+ 35e:	ef 90       	pop	r14
+ 360:	08 95       	ret
+    //    010   masked
+    //   -> 010 shifted
+    int8_t count = 0;
+    if(length > 0) {
+		uint8_t b;
+		if ((count = mpu6050_readByte(regAddr, &b)) != 0) {
+ 362:	be 01       	movw	r22, r28
+ 364:	6f 5f       	subi	r22, 0xFF	; 255
+ 366:	7f 4f       	sbci	r23, 0xFF	; 255
+ 368:	f6 de       	rcall	.-532    	; 0x156 <mpu6050_readByte>
+ 36a:	68 2f       	mov	r22, r24
+ 36c:	88 23       	and	r24, r24
+ 36e:	81 f3       	breq	.-32     	; 0x350 <mpu6050_readBits+0x1e>
+			uint8_t mask = ((1 << length) - 1) << (bitStart - length + 1);
+ 370:	81 2f       	mov	r24, r17
+ 372:	90 e0       	ldi	r25, 0x00	; 0
+ 374:	40 2f       	mov	r20, r16
+ 376:	50 e0       	ldi	r21, 0x00	; 0
+ 378:	4f 5f       	subi	r20, 0xFF	; 255
+ 37a:	5f 4f       	sbci	r21, 0xFF	; 255
+ 37c:	48 1b       	sub	r20, r24
+ 37e:	59 0b       	sbc	r21, r25
+			b &= mask;
+			b >>= (bitStart - length + 1);
+ 380:	21 e0       	ldi	r18, 0x01	; 1
+ 382:	30 e0       	ldi	r19, 0x00	; 0
+ 384:	01 2e       	mov	r0, r17
+ 386:	02 c0       	rjmp	.+4      	; 0x38c <mpu6050_readBits+0x5a>
+ 388:	22 0f       	add	r18, r18
+ 38a:	33 1f       	adc	r19, r19
+ 38c:	0a 94       	dec	r0
+ 38e:	e2 f7       	brpl	.-8      	; 0x388 <mpu6050_readBits+0x56>
+ 390:	21 50       	subi	r18, 0x01	; 1
+ 392:	30 40       	sbci	r19, 0x00	; 0
+ 394:	04 2e       	mov	r0, r20
+ 396:	02 c0       	rjmp	.+4      	; 0x39c <mpu6050_readBits+0x6a>
+ 398:	22 0f       	add	r18, r18
+ 39a:	33 1f       	adc	r19, r19
+ 39c:	0a 94       	dec	r0
+ 39e:	e2 f7       	brpl	.-8      	; 0x398 <mpu6050_readBits+0x66>
+ 3a0:	89 81       	ldd	r24, Y+1	; 0x01
+ 3a2:	82 23       	and	r24, r18
+ 3a4:	90 e0       	ldi	r25, 0x00	; 0
+ 3a6:	02 c0       	rjmp	.+4      	; 0x3ac <mpu6050_readBits+0x7a>
+ 3a8:	95 95       	asr	r25
+ 3aa:	87 95       	ror	r24
+ 3ac:	4a 95       	dec	r20
+ 3ae:	e2 f7       	brpl	.-8      	; 0x3a8 <mpu6050_readBits+0x76>
+			*data = b;
+ 3b0:	f7 01       	movw	r30, r14
+ 3b2:	80 83       	st	Z, r24
+ 3b4:	cd cf       	rjmp	.-102    	; 0x350 <mpu6050_readBits+0x1e>
+
+000003b6 <mpu6050_testConnection>:
+
+/*
+ * test connectino to chip
+ */
+uint8_t mpu6050_testConnection() {
+	mpu6050_readBits(MPU6050_RA_WHO_AM_I, MPU6050_WHO_AM_I_BIT, MPU6050_WHO_AM_I_LENGTH, (uint8_t *)buffer);
+ 3b6:	85 e7       	ldi	r24, 0x75	; 117
+ 3b8:	66 e0       	ldi	r22, 0x06	; 6
+ 3ba:	46 e0       	ldi	r20, 0x06	; 6
+ 3bc:	20 e6       	ldi	r18, 0x60	; 96
+ 3be:	30 e0       	ldi	r19, 0x00	; 0
+ 3c0:	b8 df       	rcall	.-144    	; 0x332 <mpu6050_readBits>
+	if(buffer[0] == 0x34)
+ 3c2:	80 91 60 00 	lds	r24, 0x0060
+ 3c6:	90 e0       	ldi	r25, 0x00	; 0
+ 3c8:	84 33       	cpi	r24, 0x34	; 52
+ 3ca:	11 f0       	breq	.+4      	; 0x3d0 <mpu6050_testConnection+0x1a>
+		return 1;
+	else
+		return 0;
+}
+ 3cc:	89 2f       	mov	r24, r25
+ 3ce:	08 95       	ret
+/*
+ * test connectino to chip
+ */
+uint8_t mpu6050_testConnection() {
+	mpu6050_readBits(MPU6050_RA_WHO_AM_I, MPU6050_WHO_AM_I_BIT, MPU6050_WHO_AM_I_LENGTH, (uint8_t *)buffer);
+	if(buffer[0] == 0x34)
+ 3d0:	91 e0       	ldi	r25, 0x01	; 1
+		return 1;
+	else
+		return 0;
+}
+ 3d2:	89 2f       	mov	r24, r25
+ 3d4:	08 95       	ret
+
+000003d6 <i2c_init>:
+*************************************************************************/
+void i2c_init(void)
+{
+  /* initialize TWI clock: 100 kHz clock, TWPS = 0 => prescaler = 1 */
+  
+  TWSR = 0;                         /* no prescaler */
+ 3d6:	11 b8       	out	0x01, r1	; 1
+  TWBR = ((F_CPU/SCL_CLOCK)-16)/2;  /* must be > 10 for stable operation */
+ 3d8:	80 e2       	ldi	r24, 0x20	; 32
+ 3da:	80 b9       	out	0x00, r24	; 0
+
+}/* i2c_init */
+ 3dc:	08 95       	ret
+
+000003de <i2c_start>:
+/*************************************************************************	
+  Issues a start condition and sends address and transfer direction.
+  return 0 = device accessible, 1= failed to access device
+*************************************************************************/
+unsigned char i2c_start(unsigned char address)
+{
+ 3de:	28 2f       	mov	r18, r24
+	uint32_t  i2c_timer = 0;
+    uint8_t   twst;
+
+	// send START condition
+	TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);
+ 3e0:	84 ea       	ldi	r24, 0xA4	; 164
+ 3e2:	86 bf       	out	0x36, r24	; 54
+ 3e4:	8f ef       	ldi	r24, 0xFF	; 255
+ 3e6:	90 e0       	ldi	r25, 0x00	; 0
+ 3e8:	a0 e0       	ldi	r26, 0x00	; 0
+ 3ea:	b0 e0       	ldi	r27, 0x00	; 0
+ 3ec:	0b c0       	rjmp	.+22     	; 0x404 <i2c_start+0x26>
+
+	// wait until transmission completed
+	i2c_timer = I2C_TIMER_DELAY;
+	while(!(TWCR & (1<<TWINT)) && i2c_timer--);
+ 3ee:	01 97       	sbiw	r24, 0x01	; 1
+ 3f0:	a1 09       	sbc	r26, r1
+ 3f2:	b1 09       	sbc	r27, r1
+ 3f4:	8f 3f       	cpi	r24, 0xFF	; 255
+ 3f6:	3f ef       	ldi	r19, 0xFF	; 255
+ 3f8:	93 07       	cpc	r25, r19
+ 3fa:	3f ef       	ldi	r19, 0xFF	; 255
+ 3fc:	a3 07       	cpc	r26, r19
+ 3fe:	3f ef       	ldi	r19, 0xFF	; 255
+ 400:	b3 07       	cpc	r27, r19
+ 402:	49 f0       	breq	.+18     	; 0x416 <i2c_start+0x38>
+ 404:	06 b6       	in	r0, 0x36	; 54
+ 406:	07 fe       	sbrs	r0, 7
+ 408:	f2 cf       	rjmp	.-28     	; 0x3ee <i2c_start+0x10>
+	if(i2c_timer == 0)
+ 40a:	00 97       	sbiw	r24, 0x00	; 0
+ 40c:	a1 05       	cpc	r26, r1
+ 40e:	b1 05       	cpc	r27, r1
+ 410:	11 f4       	brne	.+4      	; 0x416 <i2c_start+0x38>
+	if(i2c_timer == 0)
+		return 1;
+
+	// check value of TWI Status Register. Mask prescaler bits.
+	twst = TW_STATUS & 0xF8;
+	if ( (twst != TW_MT_SLA_ACK) && (twst != TW_MR_SLA_ACK) ) return 1;
+ 412:	81 e0       	ldi	r24, 0x01	; 1
+
+	return 0;
+
+}/* i2c_start */
+ 414:	08 95       	ret
+	while(!(TWCR & (1<<TWINT)) && i2c_timer--);
+	if(i2c_timer == 0)
+		return 1;
+
+	// check value of TWI Status Register. Mask prescaler bits.
+	twst = TW_STATUS & 0xF8;
+ 416:	81 b1       	in	r24, 0x01	; 1
+ 418:	88 7f       	andi	r24, 0xF8	; 248
+	if ( (twst != TW_START) && (twst != TW_REP_START)) return 1;
+ 41a:	88 30       	cpi	r24, 0x08	; 8
+ 41c:	11 f0       	breq	.+4      	; 0x422 <i2c_start+0x44>
+ 41e:	80 31       	cpi	r24, 0x10	; 16
+ 420:	c1 f7       	brne	.-16     	; 0x412 <i2c_start+0x34>
+
+	// send device address
+	TWDR = address;
+ 422:	23 b9       	out	0x03, r18	; 3
+	TWCR = (1<<TWINT) | (1<<TWEN);
+ 424:	84 e8       	ldi	r24, 0x84	; 132
+ 426:	86 bf       	out	0x36, r24	; 54
+ 428:	8f ef       	ldi	r24, 0xFF	; 255
+ 42a:	90 e0       	ldi	r25, 0x00	; 0
+ 42c:	a0 e0       	ldi	r26, 0x00	; 0
+ 42e:	b0 e0       	ldi	r27, 0x00	; 0
+ 430:	0b c0       	rjmp	.+22     	; 0x448 <i2c_start+0x6a>
+
+	// wail until transmission completed and ACK/NACK has been received
+	i2c_timer = I2C_TIMER_DELAY;
+	while(!(TWCR & (1<<TWINT)) && i2c_timer--);
+ 432:	01 97       	sbiw	r24, 0x01	; 1
+ 434:	a1 09       	sbc	r26, r1
+ 436:	b1 09       	sbc	r27, r1
+ 438:	8f 3f       	cpi	r24, 0xFF	; 255
+ 43a:	2f ef       	ldi	r18, 0xFF	; 255
+ 43c:	92 07       	cpc	r25, r18
+ 43e:	2f ef       	ldi	r18, 0xFF	; 255
+ 440:	a2 07       	cpc	r26, r18
+ 442:	2f ef       	ldi	r18, 0xFF	; 255
+ 444:	b2 07       	cpc	r27, r18
+ 446:	39 f0       	breq	.+14     	; 0x456 <i2c_start+0x78>
+ 448:	06 b6       	in	r0, 0x36	; 54
+ 44a:	07 fe       	sbrs	r0, 7
+ 44c:	f2 cf       	rjmp	.-28     	; 0x432 <i2c_start+0x54>
+	if(i2c_timer == 0)
+ 44e:	00 97       	sbiw	r24, 0x00	; 0
+ 450:	a1 05       	cpc	r26, r1
+ 452:	b1 05       	cpc	r27, r1
+ 454:	f1 f2       	breq	.-68     	; 0x412 <i2c_start+0x34>
+		return 1;
+
+	// check value of TWI Status Register. Mask prescaler bits.
+	twst = TW_STATUS & 0xF8;
+ 456:	91 b1       	in	r25, 0x01	; 1
+ 458:	98 7f       	andi	r25, 0xF8	; 248
+	if ( (twst != TW_MT_SLA_ACK) && (twst != TW_MR_SLA_ACK) ) return 1;
+ 45a:	98 31       	cpi	r25, 0x18	; 24
+ 45c:	29 f0       	breq	.+10     	; 0x468 <__stack+0x9>
+ 45e:	80 e0       	ldi	r24, 0x00	; 0
+ 460:	90 34       	cpi	r25, 0x40	; 64
+ 462:	c1 f2       	breq	.-80     	; 0x414 <i2c_start+0x36>
+ 464:	81 e0       	ldi	r24, 0x01	; 1
+ 466:	08 95       	ret
+ 468:	80 e0       	ldi	r24, 0x00	; 0
+ 46a:	08 95       	ret
+
+0000046c <i2c_stop>:
+void i2c_stop(void)
+{
+	uint32_t  i2c_timer = 0;
+
+    /* send stop condition */
+	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
+ 46c:	84 e9       	ldi	r24, 0x94	; 148
+ 46e:	86 bf       	out	0x36, r24	; 54
+ 470:	80 e0       	ldi	r24, 0x00	; 0
+ 472:	90 e0       	ldi	r25, 0x00	; 0
+ 474:	05 c0       	rjmp	.+10     	; 0x480 <i2c_stop+0x14>
+	
+	// wait until stop condition is executed and bus released
+	i2c_timer = I2C_TIMER_DELAY;
+	while((TWCR & (1<<TWSTO)) && i2c_timer--);
+ 476:	01 96       	adiw	r24, 0x01	; 1
+ 478:	21 e0       	ldi	r18, 0x01	; 1
+ 47a:	80 30       	cpi	r24, 0x00	; 0
+ 47c:	92 07       	cpc	r25, r18
+ 47e:	19 f0       	breq	.+6      	; 0x486 <i2c_stop+0x1a>
+ 480:	06 b6       	in	r0, 0x36	; 54
+ 482:	04 fc       	sbrc	r0, 4
+ 484:	f8 cf       	rjmp	.-16     	; 0x476 <i2c_stop+0xa>
+ 486:	08 95       	ret
+
+00000488 <i2c_write>:
+{	
+	uint32_t  i2c_timer = 0;
+    uint8_t   twst;
+    
+	// send data to the previously addressed device
+	TWDR = data;
+ 488:	83 b9       	out	0x03, r24	; 3
+	TWCR = (1<<TWINT) | (1<<TWEN);
+ 48a:	84 e8       	ldi	r24, 0x84	; 132
+ 48c:	86 bf       	out	0x36, r24	; 54
+ 48e:	8f ef       	ldi	r24, 0xFF	; 255
+ 490:	90 e0       	ldi	r25, 0x00	; 0
+ 492:	a0 e0       	ldi	r26, 0x00	; 0
+ 494:	b0 e0       	ldi	r27, 0x00	; 0
+ 496:	0b c0       	rjmp	.+22     	; 0x4ae <i2c_write+0x26>
+
+	// wait until transmission completed
+	i2c_timer = I2C_TIMER_DELAY;
+	while(!(TWCR & (1<<TWINT)) && i2c_timer--);
+ 498:	01 97       	sbiw	r24, 0x01	; 1
+ 49a:	a1 09       	sbc	r26, r1
+ 49c:	b1 09       	sbc	r27, r1
+ 49e:	8f 3f       	cpi	r24, 0xFF	; 255
+ 4a0:	2f ef       	ldi	r18, 0xFF	; 255
+ 4a2:	92 07       	cpc	r25, r18
+ 4a4:	2f ef       	ldi	r18, 0xFF	; 255
+ 4a6:	a2 07       	cpc	r26, r18
+ 4a8:	2f ef       	ldi	r18, 0xFF	; 255
+ 4aa:	b2 07       	cpc	r27, r18
+ 4ac:	51 f0       	breq	.+20     	; 0x4c2 <i2c_write+0x3a>
+ 4ae:	06 b6       	in	r0, 0x36	; 54
+ 4b0:	07 fe       	sbrs	r0, 7
+ 4b2:	f2 cf       	rjmp	.-28     	; 0x498 <i2c_write+0x10>
+	if(i2c_timer == 0)
+ 4b4:	00 97       	sbiw	r24, 0x00	; 0
+ 4b6:	a1 05       	cpc	r26, r1
+ 4b8:	b1 05       	cpc	r27, r1
+ 4ba:	19 f4       	brne	.+6      	; 0x4c2 <i2c_write+0x3a>
+		return 1;
+
+	// check value of TWI Status Register. Mask prescaler bits
+	twst = TW_STATUS & 0xF8;
+ 4bc:	91 e0       	ldi	r25, 0x01	; 1
+	if( twst != TW_MT_DATA_ACK) return 1;
+	return 0;
+
+}/* i2c_write */
+ 4be:	89 2f       	mov	r24, r25
+ 4c0:	08 95       	ret
+	while(!(TWCR & (1<<TWINT)) && i2c_timer--);
+	if(i2c_timer == 0)
+		return 1;
+
+	// check value of TWI Status Register. Mask prescaler bits
+	twst = TW_STATUS & 0xF8;
+ 4c2:	81 b1       	in	r24, 0x01	; 1
+ 4c4:	90 e0       	ldi	r25, 0x00	; 0
+ 4c6:	88 7f       	andi	r24, 0xF8	; 248
+ 4c8:	88 32       	cpi	r24, 0x28	; 40
+ 4ca:	c1 f7       	brne	.-16     	; 0x4bc <i2c_write+0x34>
+	if( twst != TW_MT_DATA_ACK) return 1;
+	return 0;
+
+}/* i2c_write */
+ 4cc:	89 2f       	mov	r24, r25
+ 4ce:	08 95       	ret
+
+000004d0 <i2c_readAck>:
+*************************************************************************/
+unsigned char i2c_readAck(void)
+{
+	uint32_t  i2c_timer = 0;
+
+	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWEA);
+ 4d0:	84 ec       	ldi	r24, 0xC4	; 196
+ 4d2:	86 bf       	out	0x36, r24	; 54
+ 4d4:	8f ef       	ldi	r24, 0xFF	; 255
+ 4d6:	90 e0       	ldi	r25, 0x00	; 0
+ 4d8:	a0 e0       	ldi	r26, 0x00	; 0
+ 4da:	b0 e0       	ldi	r27, 0x00	; 0
+ 4dc:	0b c0       	rjmp	.+22     	; 0x4f4 <i2c_readAck+0x24>
+	i2c_timer = I2C_TIMER_DELAY;
+	while(!(TWCR & (1<<TWINT)) && i2c_timer--);
+ 4de:	01 97       	sbiw	r24, 0x01	; 1
+ 4e0:	a1 09       	sbc	r26, r1
+ 4e2:	b1 09       	sbc	r27, r1
+ 4e4:	8f 3f       	cpi	r24, 0xFF	; 255
+ 4e6:	2f ef       	ldi	r18, 0xFF	; 255
+ 4e8:	92 07       	cpc	r25, r18
+ 4ea:	2f ef       	ldi	r18, 0xFF	; 255
+ 4ec:	a2 07       	cpc	r26, r18
+ 4ee:	2f ef       	ldi	r18, 0xFF	; 255
+ 4f0:	b2 07       	cpc	r27, r18
+ 4f2:	49 f0       	breq	.+18     	; 0x506 <i2c_readAck+0x36>
+ 4f4:	06 b6       	in	r0, 0x36	; 54
+ 4f6:	07 fe       	sbrs	r0, 7
+ 4f8:	f2 cf       	rjmp	.-28     	; 0x4de <i2c_readAck+0xe>
+	if(i2c_timer == 0)
+ 4fa:	00 97       	sbiw	r24, 0x00	; 0
+ 4fc:	a1 05       	cpc	r26, r1
+ 4fe:	b1 05       	cpc	r27, r1
+ 500:	11 f4       	brne	.+4      	; 0x506 <i2c_readAck+0x36>
+ 502:	80 e0       	ldi	r24, 0x00	; 0
+ 504:	08 95       	ret
+		return 0;
+
+    return TWDR;
+ 506:	83 b1       	in	r24, 0x03	; 3
+
+}/* i2c_readAck */
+ 508:	08 95       	ret
+
+0000050a <i2c_readNak>:
+*************************************************************************/
+unsigned char i2c_readNak(void)
+{
+	uint32_t  i2c_timer = 0;
+
+	TWCR = (1<<TWINT) | (1<<TWEN);
+ 50a:	84 e8       	ldi	r24, 0x84	; 132
+ 50c:	86 bf       	out	0x36, r24	; 54
+ 50e:	8f ef       	ldi	r24, 0xFF	; 255
+ 510:	90 e0       	ldi	r25, 0x00	; 0
+ 512:	a0 e0       	ldi	r26, 0x00	; 0
+ 514:	b0 e0       	ldi	r27, 0x00	; 0
+ 516:	0b c0       	rjmp	.+22     	; 0x52e <i2c_readNak+0x24>
+	i2c_timer = I2C_TIMER_DELAY;
+	while(!(TWCR & (1<<TWINT)) && i2c_timer--);
+ 518:	01 97       	sbiw	r24, 0x01	; 1
+ 51a:	a1 09       	sbc	r26, r1
+ 51c:	b1 09       	sbc	r27, r1
+ 51e:	8f 3f       	cpi	r24, 0xFF	; 255
+ 520:	2f ef       	ldi	r18, 0xFF	; 255
+ 522:	92 07       	cpc	r25, r18
+ 524:	2f ef       	ldi	r18, 0xFF	; 255
+ 526:	a2 07       	cpc	r26, r18
+ 528:	2f ef       	ldi	r18, 0xFF	; 255
+ 52a:	b2 07       	cpc	r27, r18
+ 52c:	49 f0       	breq	.+18     	; 0x540 <i2c_readNak+0x36>
+ 52e:	06 b6       	in	r0, 0x36	; 54
+ 530:	07 fe       	sbrs	r0, 7
+ 532:	f2 cf       	rjmp	.-28     	; 0x518 <i2c_readNak+0xe>
+	if(i2c_timer == 0)
+ 534:	00 97       	sbiw	r24, 0x00	; 0
+ 536:	a1 05       	cpc	r26, r1
+ 538:	b1 05       	cpc	r27, r1
+ 53a:	11 f4       	brne	.+4      	; 0x540 <i2c_readNak+0x36>
+ 53c:	80 e0       	ldi	r24, 0x00	; 0
+ 53e:	08 95       	ret
+		return 0;
+	
+    return TWDR;
+ 540:	83 b1       	in	r24, 0x03	; 3
+
+}/* i2c_readNak */
+ 542:	08 95       	ret
+
+00000544 <_delay_s>:
+
+return 0;
+}
+
+void _delay_s(int sec){
+	for(int c=0;c<sec*10;c++)
+ 544:	9c 01       	movw	r18, r24
+ 546:	fc 01       	movw	r30, r24
+ 548:	ee 0f       	add	r30, r30
+ 54a:	ff 1f       	adc	r31, r31
+ 54c:	ee 0f       	add	r30, r30
+ 54e:	ff 1f       	adc	r31, r31
+ 550:	ee 0f       	add	r30, r30
+ 552:	ff 1f       	adc	r31, r31
+ 554:	22 0f       	add	r18, r18
+ 556:	33 1f       	adc	r19, r19
+ 558:	e2 0f       	add	r30, r18
+ 55a:	f3 1f       	adc	r31, r19
+ 55c:	1e 16       	cp	r1, r30
+ 55e:	1f 06       	cpc	r1, r31
+ 560:	8c f4       	brge	.+34     	; 0x584 <_delay_s+0x40>
+ 562:	60 e0       	ldi	r22, 0x00	; 0
+ 564:	70 e0       	ldi	r23, 0x00	; 0
+ 566:	48 ec       	ldi	r20, 0xC8	; 200
+ 568:	50 e0       	ldi	r21, 0x00	; 0
+ 56a:	28 ee       	ldi	r18, 0xE8	; 232
+ 56c:	33 e0       	ldi	r19, 0x03	; 3
+ 56e:	ca 01       	movw	r24, r20
+ 570:	01 97       	sbiw	r24, 0x01	; 1
+ 572:	f1 f7       	brne	.-4      	; 0x570 <_delay_s+0x2c>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 574:	21 50       	subi	r18, 0x01	; 1
+ 576:	30 40       	sbci	r19, 0x00	; 0
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 578:	d1 f7       	brne	.-12     	; 0x56e <_delay_s+0x2a>
+ 57a:	6f 5f       	subi	r22, 0xFF	; 255
+ 57c:	7f 4f       	sbci	r23, 0xFF	; 255
+ 57e:	6e 17       	cp	r22, r30
+ 580:	7f 07       	cpc	r23, r31
+ 582:	9c f3       	brlt	.-26     	; 0x56a <_delay_s+0x26>
+ 584:	08 95       	ret
+
+00000586 <main>:
+	double azg = 0;
+	double gxds = 0;
+	double gyds = 0;
+	double gzds = 0;
+
+	DDRB |=1<<PB1 | 1<<PB2;
+ 586:	87 b3       	in	r24, 0x17	; 23
+ 588:	86 60       	ori	r24, 0x06	; 6
+ 58a:	87 bb       	out	0x17, r24	; 23
+
+
+	_delay_s(1);
+ 58c:	81 e0       	ldi	r24, 0x01	; 1
+ 58e:	90 e0       	ldi	r25, 0x00	; 0
+ 590:	d9 df       	rcall	.-78     	; 0x544 <_delay_s>
+	_delay_s(1);
+	PORTB&=0xFF-(1<<PB2);
+
+*/
+	//init interrupt
+	sei();
+ 592:	78 94       	sei
+
+	//init mpu6050
+	mpu6050_init();
+ 594:	a9 de       	rcall	.-686    	; 0x2e8 <mpu6050_init>
+ 596:	24 ef       	ldi	r18, 0xF4	; 244
+ 598:	31 e0       	ldi	r19, 0x01	; 1
+ 59a:	48 ec       	ldi	r20, 0xC8	; 200
+ 59c:	50 e0       	ldi	r21, 0x00	; 0
+ 59e:	ca 01       	movw	r24, r20
+ 5a0:	01 97       	sbiw	r24, 0x01	; 1
+ 5a2:	f1 f7       	brne	.-4      	; 0x5a0 <main+0x1a>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 5a4:	21 50       	subi	r18, 0x01	; 1
+ 5a6:	30 40       	sbci	r19, 0x00	; 0
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 5a8:	d1 f7       	brne	.-12     	; 0x59e <main+0x18>
+	_delay_ms(50);
+	if(mpu6050_testConnection()){
+ 5aa:	05 df       	rcall	.-502    	; 0x3b6 <mpu6050_testConnection>
+ 5ac:	88 23       	and	r24, r24
+ 5ae:	a9 f0       	breq	.+42     	; 0x5da <main+0x54>
+		PORTB|=(1<<PB1);
+ 5b0:	c1 9a       	sbi	0x18, 1	; 24
+ 5b2:	84 ef       	ldi	r24, 0xF4	; 244
+ 5b4:	91 e0       	ldi	r25, 0x01	; 1
+ 5b6:	28 ec       	ldi	r18, 0xC8	; 200
+ 5b8:	30 e0       	ldi	r19, 0x00	; 0
+ 5ba:	f9 01       	movw	r30, r18
+ 5bc:	31 97       	sbiw	r30, 0x01	; 1
+ 5be:	f1 f7       	brne	.-4      	; 0x5bc <main+0x36>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 5c0:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 5c2:	d9 f7       	brne	.-10     	; 0x5ba <main+0x34>
+	}else{
+		PORTB&=0xFF-(1<<PB1);
+	}
+	_delay_ms(50);
+	mpu6050_DMPinit();
+ 5c4:	4b de       	rcall	.-874    	; 0x25c <mpu6050_DMPinit>
+		//mpu6050_getRawData(&ax, &ay, &az, &gx, &gy, &gz);
+		//mpu6050_getConvData(&axg, &ayg, &azg, &gxds, &gyds, &gzds);
+
+
+
+		if(PINC&(1<<PC3)){
+ 5c6:	9b 9b       	sbis	0x13, 3	; 19
+ 5c8:	03 c0       	rjmp	.+6      	; 0x5d0 <main+0x4a>
+			PORTB&=0xFF-(1<<PB2);
+ 5ca:	c2 98       	cbi	0x18, 2	; 24
+		//mpu6050_getRawData(&ax, &ay, &az, &gx, &gy, &gz);
+		//mpu6050_getConvData(&axg, &ayg, &azg, &gxds, &gyds, &gzds);
+
+
+
+		if(PINC&(1<<PC3)){
+ 5cc:	9b 99       	sbic	0x13, 3	; 19
+ 5ce:	fd cf       	rjmp	.-6      	; 0x5ca <main+0x44>
+			PORTB&=0xFF-(1<<PB2);
+		}else{
+			PORTB|=(1<<PB2);
+ 5d0:	c2 9a       	sbi	0x18, 2	; 24
+			_delay_s(1);
+ 5d2:	81 e0       	ldi	r24, 0x01	; 1
+ 5d4:	90 e0       	ldi	r25, 0x00	; 0
+ 5d6:	b6 df       	rcall	.-148    	; 0x544 <_delay_s>
+ 5d8:	f6 cf       	rjmp	.-20     	; 0x5c6 <main+0x40>
+	mpu6050_init();
+	_delay_ms(50);
+	if(mpu6050_testConnection()){
+		PORTB|=(1<<PB1);
+	}else{
+		PORTB&=0xFF-(1<<PB1);
+ 5da:	c1 98       	cbi	0x18, 1	; 24
+ 5dc:	84 ef       	ldi	r24, 0xF4	; 244
+ 5de:	91 e0       	ldi	r25, 0x01	; 1
+ 5e0:	ea cf       	rjmp	.-44     	; 0x5b6 <main+0x30>
+
+000005e2 <_exit>:
+ 5e2:	f8 94       	cli
+
+000005e4 <__stop_program>:
+ 5e4:	ff cf       	rjmp	.-2      	; 0x5e4 <__stop_program>

@@ -1,0 +1,20 @@
+#######################################
+# Syntax Coloring Map For arduinoFFT
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+arduinoFFT	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+ComplexToMagnitude	KEYWORD2
+Compute	KEYWORD2
+Windowing	KEYWORD2
+Exponent	KEYWORD2
+Revision	KEYWORD2
+MajorPeak	KEYWORD2

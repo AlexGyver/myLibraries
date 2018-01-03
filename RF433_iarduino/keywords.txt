@@ -1,0 +1,28 @@
+#	####################################################
+#	СИНТАКСИЧЕСКАЯ РАСКРАСКА ДЛЯ БИБИЛИОТЕКИ:
+#	iarduino_RF433
+#	####################################################
+#	ТИПЫ ДАННЫХ:							   (KEYWORD1)
+	iarduino_RF433_Transmitter	KEYWORD1
+	iarduino_RF433_Receiver	KEYWORD1
+#	####################################################
+#	МЕТОДЫ И ФУНКЦИИ:						   (KEYWORD2)
+	begin	KEYWORD2
+	setDataRate	KEYWORD2
+	openReadingPipe	KEYWORD2
+	openWritingPipe	KEYWORD2
+	closeReadingPipe	KEYWORD2
+	startListening	KEYWORD2
+	stopListening	KEYWORD2
+	available	KEYWORD2
+	read	KEYWORD2
+	write	KEYWORD2
+#	####################################################
+#	КОНСТАНТЫ:								   (LITERAL1)
+	i433_5KBPS	LITERAL1
+	i433_4KBPS	LITERAL1
+	i433_3KBPS	LITERAL1
+	i433_2KBPS	LITERAL1
+	i433_1KBPS	LITERAL1
+	i433_500BPS	LITERAL1
+	i433_100BPS	LITERAL1

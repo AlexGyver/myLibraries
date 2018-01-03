@@ -1,0 +1,19 @@
+#######################################
+# Syntax Coloring Map For GyverRC
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+analogTX	KEYWORD1
+digitalTX	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+TXread	KEYWORD2
+calibrate	KEYWORD2
+TXstate	KEYWORD2
+start	KEYWORD2
