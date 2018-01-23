@@ -19,6 +19,10 @@ Encoder::setCounters(uint8_t norm, uint8_t hold, uint8_t norm_step, uint8_t hold
 	_norm_step = norm_step;
 	_hold_step = hold_step;
 }
+Encoder::setCounters(uint8_t norm, uint8_t norm_step) {
+	_norm = norm;
+	_norm_step = norm_step;
+}
 int Encoder::getNorm() {
 	return _norm;
 }

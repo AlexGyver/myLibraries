@@ -8,6 +8,7 @@ class Encoder
     Encoder();
     init(uint8_t CLK, uint8_t DT, uint8_t SW);
 	setCounters(uint8_t norm, uint8_t hold, uint8_t norm_step, uint8_t hold_step);
+	setCounters(uint8_t norm, uint8_t norm_step);
 	tick();
 	int getNorm();
 	int getHold();
