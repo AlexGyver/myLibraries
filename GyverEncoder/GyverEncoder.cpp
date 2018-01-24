@@ -13,16 +13,32 @@ Encoder::init(uint8_t CLK, uint8_t DT, uint8_t SW)
   pinMode (_SW, INPUT_PULLUP);
   DT_last = digitalRead(_CLK);         // читаем начальное положение CLK
 }
-Encoder::setCounters(uint8_t norm, uint8_t hold, uint8_t norm_step, uint8_t hold_step) {
+Encoder::invert() {
+	uint8_t lol = _CLK;
+	_CLK = _DT;
+	_DT = lol;
+}
+Encoder::setCounterNorm(int norm) {
 	_norm = norm;
+}
+Encoder::setCounterHold(int hold) {
 	_hold = hold;
+}
+Encoder::setStepNorm(int norm_step) {
 	_norm_step = norm_step;
+}
+Encoder::setStepHold(int hold_step) {
 	_hold_step = hold_step;
 }
-Encoder::setCounters(uint8_t norm, uint8_t norm_step) {
-	_norm = norm;
-	_norm_step = norm_step;
+Encoder::setLimitsNorm(int normMin, int normMax) {
+	_normMin = normMin;
+	_normMax = normMax;
 }
+Encoder::setLimitsHold(int holdMin, int holdMax) {
+	_holdMin = holdMin;
+	_holdMax = holdMax;
+}
+
 int Encoder::getNorm() {
 	return _norm;
 }
@@ -141,6 +157,8 @@ Encoder::tick() {
 		isRight_f = false;
       }
     }
+	_norm = constrain(_norm, _normMin, _normMax);
+	_hold = constrain(_hold, _holdMin, _holdMax);
     turn_flag = true;                    // флаг что был поворот ручки энкодера
 	isTurn_f = true;
   }

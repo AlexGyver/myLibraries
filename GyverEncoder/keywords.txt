@@ -6,9 +6,14 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-Encoder	KEYWORD1
-init	KEYWORD1
-setCounters	KEYWORD1
+Encoder			KEYWORD1
+init			KEYWORD1
+setCounterNorm	KEYWORD1
+setCounterHold	KEYWORD1
+setStepNorm		KEYWORD1
+setStepHold		KEYWORD1
+setLimitsNorm	KEYWORD1
+setLimitsHold	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

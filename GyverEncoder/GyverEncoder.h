@@ -7,8 +7,14 @@ class Encoder
   public:
     Encoder();
     init(uint8_t CLK, uint8_t DT, uint8_t SW);
-	setCounters(uint8_t norm, uint8_t hold, uint8_t norm_step, uint8_t hold_step);
-	setCounters(uint8_t norm, uint8_t norm_step);
+	setCounterNorm(int norm);
+	setCounterHold(int hold);
+	setStepNorm(int norm_step);	
+	setStepHold(int hold_step);	
+	setLimitsNorm(int normMin, int normMax);
+	setLimitsHold(int holdMin, int holdMax);
+	invert();
+	
 	tick();
 	int getNorm();
 	int getHold();
@@ -33,6 +39,7 @@ class Encoder
 	boolean isPress_f, isRelease_f, isHolded_f, isHold_f;
 	
 	int _norm, _hold;
+	int _normMin, _normMax, _holdMin, _holdMax;
 	uint8_t _norm_step, _hold_step;
 	
 	unsigned long debounce_timer;
