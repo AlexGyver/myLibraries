@@ -2,8 +2,6 @@ uint8_t CLK = 4;
 uint8_t DT = 3;
 uint8_t SW = 2;
 
-byte val1, val2;
-
 #include "GyverEncoder.h"
 Encoder enc1;
 
@@ -13,10 +11,12 @@ void setup() {
   
   // val1 - переменная изменения при повороте
   // val2 - переменная изменения при нажатии повороте
-  enc1.setCounterNorm(val1);
-  enc1.setCounterHold(val2);
+  // общая функция setCounters(int norm, int hold);
+  enc1.setCounterNorm(0);
+  enc1.setCounterHold(50);
   
   // установка шага при повороте и при нажатом повороте
+  // общая функция setSteps(int norm_step, int hold_step);
   enc1.setStepNorm(1);
   enc1.setStepHold(1);
 

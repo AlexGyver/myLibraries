@@ -8,8 +8,10 @@
 
 Encoder			KEYWORD1
 init			KEYWORD1
+setCounters		KEYWORD1
 setCounterNorm	KEYWORD1
 setCounterHold	KEYWORD1
+setSteps		KEYWORD1
 setStepNorm		KEYWORD1
 setStepHold		KEYWORD1
 setLimitsNorm	KEYWORD1

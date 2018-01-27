@@ -7,12 +7,18 @@ class Encoder
   public:
     Encoder();
     init(uint8_t CLK, uint8_t DT, uint8_t SW);
+	
+	setCounters(int norm, int hold);
 	setCounterNorm(int norm);
 	setCounterHold(int hold);
+	
+	setSteps(int norm_step, int hold_step);
 	setStepNorm(int norm_step);	
 	setStepHold(int hold_step);	
+	
 	setLimitsNorm(int normMin, int normMax);
 	setLimitsHold(int holdMin, int holdMax);
+	
 	invert();
 	
 	tick();

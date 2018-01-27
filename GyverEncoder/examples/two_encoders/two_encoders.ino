@@ -1,8 +1,6 @@
 #include "GyverEncoder.h"
 Encoder enc1, enc2;
 
-byte val1, val2;
-
 void setup() {
   Serial.begin(9600);
   // (CLK, DT, SW);
@@ -10,8 +8,8 @@ void setup() {
   enc2.init(7, 6, 5);
   
   // установка начальной точки для поворота
-  enc1.setCounterNorm(val1);
-  enc2.setCounterNorm(val2);
+  enc1.setCounterNorm(0);
+  enc2.setCounterNorm(50);
 
   // установка шага при повороте
   enc1.setStepNorm(1);

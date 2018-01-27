@@ -18,11 +18,21 @@ Encoder::invert() {
 	_CLK = _DT;
 	_DT = lol;
 }
+
+Encoder::setCounters(int norm, int hold) {
+	_norm = norm;
+	_hold = hold;
+}
 Encoder::setCounterNorm(int norm) {
 	_norm = norm;
 }
 Encoder::setCounterHold(int hold) {
 	_hold = hold;
+}
+
+Encoder::setSteps(int norm_step, int hold_step) {
+	_norm_step = norm_step;
+	_hold_step = hold_step;
 }
 Encoder::setStepNorm(int norm_step) {
 	_norm_step = norm_step;
@@ -30,6 +40,7 @@ Encoder::setStepNorm(int norm_step) {
 Encoder::setStepHold(int hold_step) {
 	_hold_step = hold_step;
 }
+
 Encoder::setLimitsNorm(int normMin, int normMax) {
 	_normMin = normMin;
 	_normMax = normMax;
