@@ -1,10 +1,7 @@
 #include "GyverEncoder.h"
 #include <Arduino.h>
 
-Encoder::Encoder(){}
-
-Encoder::init(uint8_t CLK, uint8_t DT, uint8_t SW)
-{
+Encoder::Encoder(uint8_t CLK, uint8_t DT, uint8_t SW) {
   _CLK = CLK;
   _DT = DT;
   _SW = SW;
@@ -13,49 +10,44 @@ Encoder::init(uint8_t CLK, uint8_t DT, uint8_t SW)
   pinMode (_SW, INPUT_PULLUP);
   DT_last = digitalRead(_CLK);         // читаем начальное положение CLK
 }
-Encoder::invert() {
+
+void Encoder::invert() {
 	uint8_t lol = _CLK;
 	_CLK = _DT;
 	_DT = lol;
 }
 
-Encoder::setCounters(int norm, int hold) {
-	_norm = norm;
-	_hold = hold;
+void Encoder::setCounters(int norm, int hold) {
+	normCount = norm;
+	holdCount = hold;
 }
-Encoder::setCounterNorm(int norm) {
-	_norm = norm;
+void Encoder::setCounterNorm(int norm) {
+	normCount = norm;
 }
-Encoder::setCounterHold(int hold) {
-	_hold = hold;
-}
-
-Encoder::setSteps(int norm_step, int hold_step) {
-	_norm_step = norm_step;
-	_hold_step = hold_step;
-}
-Encoder::setStepNorm(int norm_step) {
-	_norm_step = norm_step;
-}
-Encoder::setStepHold(int hold_step) {
-	_hold_step = hold_step;
+void Encoder::setCounterHold(int hold) {
+	holdCount = hold;
 }
 
-Encoder::setLimitsNorm(int normMin, int normMax) {
-	_normMin = normMin;
-	_normMax = normMax;
+void Encoder::setSteps(int norm_step, int hold_step) {
+	normCount_step = norm_step;
+	holdCount_step = hold_step;
 }
-Encoder::setLimitsHold(int holdMin, int holdMax) {
-	_holdMin = holdMin;
-	_holdMax = holdMax;
+void Encoder::setStepNorm(int norm_step) {
+	normCount_step = norm_step;
+}
+void Encoder::setStepHold(int hold_step) {
+	holdCount_step = hold_step;
 }
 
-int Encoder::getNorm() {
-	return _norm;
+void Encoder::setLimitsNorm(int normMin, int normMax) {
+	normCountMin = normMin;
+	normCountMax = normMax;
 }
-int Encoder::getHold() {
-	return _hold;
+void Encoder::setLimitsHold(int holdMin, int holdMax) {
+	holdCountMin = holdMin;
+	holdCountMax = holdMax;
 }
+
 boolean Encoder::isTurn() {
 	if (isTurn_f) {
 		isTurn_f = false;
@@ -111,7 +103,7 @@ boolean Encoder::isHold() {
 	} else return false;
 }
 
-Encoder::tick() {	
+void Encoder::tick() {	
   DT_now = digitalRead(_CLK);          // читаем текущее положение CLK
   SW_state = !digitalRead(_SW);        // читаем положение кнопки SW
   if (SW_state) isHold_f = true;
@@ -149,27 +141,27 @@ Encoder::tick() {
   if (DT_now != DT_last) {            // если предыдущее и текущее положение CLK разные, значит был поворот
     if (digitalRead(_DT) != DT_now) {  // если состояние DT отличается от CLK, значит крутим по часовой стрелке
       if (SW_state) {           // если кнопка энкодера нажата
-        _hold += _hold_step;
+        holdCount += holdCount_step;
 		isRightH_f = true;
 		isLeftH_f = false;
       } else {                  // если кнопка энкодера не нажата
-        _norm += _norm_step;
+        normCount += normCount_step;
         isRight_f = true;
 		isLeft_f = false;
       }
     } else {                          // если совпадают, значит против часовой
       if (SW_state) {           // если кнопка энкодера нажата
-        _hold -= _hold_step;
+        holdCount -= holdCount_step;
 		isLeftH_f = true;
 		isRightH_f = false;
       } else {                  // если кнопка энкодера не нажата
-        _norm -= _norm_step;
+        normCount -= normCount_step;
         isLeft_f = true;
 		isRight_f = false;
       }
     }
-	_norm = constrain(_norm, _normMin, _normMax);
-	_hold = constrain(_hold, _holdMin, _holdMax);
+	normCount = constrain(normCount, normCountMin, normCountMax);
+	holdCount = constrain(holdCount, holdCountMin, holdCountMax);
     turn_flag = true;                    // флаг что был поворот ручки энкодера
 	isTurn_f = true;
   }

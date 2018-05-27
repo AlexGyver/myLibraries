@@ -1,13 +1,12 @@
-uint8_t CLK = 4;
-uint8_t DT = 3;
-uint8_t SW = 2;
+#define CLK 4
+#define DT 3
+#define SW 2
 
 #include "GyverEncoder.h"
-Encoder enc1;
+Encoder enc1(CLK, DT, SW);
 
 void setup() {
   Serial.begin(9600);
-  enc1.init(CLK, DT, SW);
   
   // val1 - переменная изменения при повороте
   // val2 - переменная изменения при нажатии повороте
@@ -30,9 +29,9 @@ void loop() {
   enc1.tick();
   
   if (enc1.isTurn()) {             // если был совершён поворот
-    Serial.print(enc1.getNorm());  // получить счётчик обычный
+    Serial.print(enc1.normCount);  // получить счётчик обычный
     Serial.print(" ");
-    Serial.println(enc1.getHold()); // получить счётчик при нажатой кнопке
+    Serial.println(enc1.holdCount); // получить счётчик при нажатой кнопке
   }
   if (enc1.isRight()) Serial.println("Right");         // если был поворот
   if (enc1.isLeft()) Serial.println("Left");

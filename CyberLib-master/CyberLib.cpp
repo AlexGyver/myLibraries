@@ -224,6 +224,7 @@ uint32_t ReadEEPROM_Long(uint8_t addr)  // считываем значение из EEPROM
 		//eeprom_read_word((uint16_t*) addr)
   return ir_code;
 }
+
 //**************Timer****************************
 #define DIV_0    TCCR1B = (1 << CS10) //Делитель 0
 #define DIV_8    TCCR1B = (1 << CS11) //Делитель 8

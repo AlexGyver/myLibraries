@@ -1,0 +1,20 @@
+#	####################################################
+#	СИНТАКСИЧЕСКАЯ РАСКРАСКА ДЛЯ БИБИЛИОТЕКИ:
+#	iarduino_Pressure_BMP
+#	####################################################
+#	ТИПЫ ДАННЫХ:							   (KEYWORD1)
+	iarduino_Pressure_BMP	KEYWORD1
+#	####################################################
+#	МЕТОДЫ И ФУНКЦИИ:						   (KEYWORD2)
+	begin	KEYWORD2
+	read	KEYWORD2
+	measurement	KEYWORD2
+	temperature	KEYWORD2
+	pressure	KEYWORD2
+	altitude	KEYWORD2
+	type	KEYWORD2
+	version	KEYWORD2
+#	####################################################
+#	КОНСТАНТЫ:								   (LITERAL1)
+	BMP280_ID	LITERAL1
+	BMP180_ID	LITERAL1

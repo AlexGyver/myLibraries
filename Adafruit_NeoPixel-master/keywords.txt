@@ -11,6 +11,7 @@ Adafruit_NeoPixel	KEYWORD1
 #######################################	
 
 setPixelColor	KEYWORD2
+setPixelColorHsv	KEYWORD2
 setPin			KEYWORD2
 setBrightness	KEYWORD2
 numPixels		KEYWORD2

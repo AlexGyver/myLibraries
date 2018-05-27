@@ -1,0 +1,27 @@
+#######################################
+# Syntax Coloring Map For AT24Cxx
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+AT24Cxx	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+read		KEYWORD2
+readInt		KEYWORD2
+readLong	KEYWORD2
+write		KEYWORD2
+writeInt	KEYWORD2
+writeLong	KEYWORD2
+update		KEYWORD2
+length		KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+

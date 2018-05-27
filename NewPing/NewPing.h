@@ -126,6 +126,8 @@
 //   and bit masks. Also made a couple minor fixes to defines.
 //
 // 05/15/2012 v1.0 - Initial release.
+
+// 10 msec min delay between measurements
 // ---------------------------------------------------------------------------
 
 #ifndef NewPing_h

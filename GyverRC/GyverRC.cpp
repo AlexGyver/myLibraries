@@ -77,7 +77,7 @@ int analogTX::calibrate()
 {
 	if (_flag_cal == 0) 
 	{
-		_min_pos = 1024;
+		_min_pos = 1023;
 		_max_pos = 0;
 		_flag_cal = 1;
 	}
